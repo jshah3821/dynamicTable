@@ -1,0 +1,94 @@
+
+<!-- This code is to create dynamic table using two user inputs of "no. of rows" and "no. of columns". -->
+<!-- To acsess any cell we can select it with it's id. -->
+<!-- Rule for id -->
+<!-- For Header cell IDs are "h1","h2","h3"....."hn" where n= No of columns. -->
+<!-- For Rows  cell IDs are in 3 characters. -->
+<!-- 1st character is "r" which indicates rows. -->
+<!-- 2nd character is  "number of row "in which we want to select our cell. -->
+<!-- 3rd character is "number of column " in which we want to select our cell. -->
+<!-- Example : I want to select header cell of 3rd column then ID is "h3" -->
+<!-- Example : I want to select cell located in 45th row & 10th column then ID is "r4510" . -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Table</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link href="./table.css" rel="styleSheet">
+  </link>
+</head>
+
+<body>
+  <button onclick="" id="ToggleTable">Hide Table</button>
+  <div class="container" id="container">
+    
+    <input type="number" id="rows" placeholder="Enter no of rows"></input>
+    <input type="number" id="columns" placeholder="Enter no of columns"></input>
+    <button onclick="createTable()" id="createTable">Create Table</button>
+    <script>
+      $(document).ready(function () {
+        $("button#ToggleTable").click(function () {
+          $("div#container").toggle()
+        })
+      });
+
+      function createTable() {
+        // Get two user input value of row & column stored in i & j.
+        var i = document.getElementById("rows").valueAsNumber;
+        var j = document.getElementById("columns").valueAsNumber;
+
+        // Check if both numbers are inserted correctly then only creates table
+        if (isNaN(i) == true || isNaN(j) == true) {
+          alert("Plese enter number of rows & columns correctly");
+        }
+        else {
+          const tbl = document.createElement("table");
+          document.getElementById("container").appendChild(tbl);
+
+          // This  loop is to create no of rows.
+          for (let k = 0; k < i; k++) {
+            const raw = document.createElement("tr");
+            tbl.appendChild(raw);
+
+            // This loop used to create no. of th or td elements.
+            for (let l = 0; l < j; l++) {
+              if (k == 0) {
+                const tblhdr = document.createElement("th");
+                raw.appendChild(tblhdr);
+                const inputElem = document.createElement("input");
+                let m = l + 1;
+                inputElem.setAttribute("id","h"+m);
+                tblhdr.appendChild(inputElem);
+                inputElem.classList.add("mystyle");
+                inputElem.placeholder = "Enter header here"
+              }
+              else {
+                const tblData = document.createElement("td");
+                raw.appendChild(tblData);
+                const inputElem = document.createElement("input");
+                let f = l +1;
+                inputElem.setAttribute("id","r"+k+f);
+                tblData.appendChild(inputElem);
+                inputElem.classList.add("mystyle");
+                inputElem.placeholder = "Enter text here"
+              }
+            }
+          }
+}
+      }
+
+</script>
+
+  </div>
+
+
+</body>
+
+</html>

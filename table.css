@@ -1,0 +1,25 @@
+div.container
+{
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    border: 2px solid black;
+    margin: auto;
+    padding: 10px 10px;
+}
+button
+{
+    background-color: brown;
+    color: aliceblue;
+}
+input.mystyle
+{
+    width: 100px;
+    text-align: center;
+    text-decoration:solid;
+}
+div#header
+{
+    width: 25px;
+    height: 25px;
+}
